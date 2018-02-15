@@ -16,8 +16,8 @@ import java.util.stream.Collectors;
 
 
 /**
-* The class is the contener for all orders
-* orders are stored and ordered in a Map<Order, Integer>
+* The class is the container for all orders
+* orders are stored and ordered in a Map with Key as Order object and Value the quantity as Integer
 * @version 0.0
 * @author Mehdi Korti
 */
@@ -79,7 +79,7 @@ public class CsvManager {
 
 	/** 
 	  * 
-	  * @return The number of records stord in the Map<Order, Integer> SortedSumProducts
+	  * @return The number of records stord in the Map SortedSumProducts
 	  *
 	*/
 	public int getNbRecors() {
@@ -88,7 +88,7 @@ public class CsvManager {
 
 	/** 
 	  * 
-	  * @return Return the Map<Order, Integer> SortedSumProducts
+	  * @return Return the Map SortedSumProducts
 	  *
 	*/
 	// Getters and setters
@@ -97,8 +97,8 @@ public class CsvManager {
 	}
 
 	/** 
-	  * 
-	  * @param The String separator for the CSVs
+	  * set the separator for the CSVs
+	  * @param separator for the CSV File
 	  *
 	*/
 	public void setSeparator(String separator) {
@@ -108,21 +108,22 @@ public class CsvManager {
 
 	/** 
 	  * This is the constructor of the Class
-	  * @param A String[] of the CSVs file names and a String as a separator
+	  * @param TheCSVs is a tab of String of all CSVs file names
+	  * @param separator is the separator of the CSVs
 	  * 
 	  *
 	*/
-	public CsvManager(String[] cSVs, String separator) {
+	public CsvManager(String[] TheCSVs, String separator) {
 		super();
-		CSVs = cSVs;
+		CSVs = TheCSVs;
 		this.separator = separator;
 
 	}
 
 	/** 
 	  * This is the constructor of the Class
-	  * @param A String[] of the CSVs file names
-	  * 	@return A List<String[]> of all lines for all CSV Files
+	  * @param fileCSV  is a tab os String containing the CSVs file names
+	  * 	@return orders
 	  *
 	*/
 	public List<String[]> readCSV(String fileCSV) {
@@ -144,13 +145,13 @@ public class CsvManager {
 	}
 
 	/** 
-	  * This is sorting function for a Map<K, V> map
-	  * @param A Map<K, V> map to sort
-	  * @param  boolean desc true for ascending descending and false for ascending sorting
-	  * 	@return A List<String[]> of all lines for all CSV Files
+	  * This is sorting function for the Map
+	  * @param  map collection to be sorted
+	  * @param  desc true for descending and false for ascending sorting
+	  * 	@return sorted Map
 	  *
 	*/
-	public static <K, V extends Comparable<? super V>> Map<K, V> sortByValue(Map<K, V> map, boolean desc) {
+	public static <K, V extends Comparable<? super Integer>> Map<Order, Integer> sortByValue(Map<Order, Integer> map, boolean desc) {
 		if (desc) {
 			return map.entrySet().stream().sorted(Map.Entry.comparingByValue(Collections.reverseOrder())).collect(
 					Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
@@ -161,7 +162,7 @@ public class CsvManager {
 	}
 
 	/** 
-	  * This function parse List<String[]> of all CSV lines then sort and set Map<Order, Integer> SortedSumProducts;
+	  * This function parse totalFiles the List of all CSV lines then sort and set SortedSumProducts;
 	  *
 	*/
 	public void summarizeAll() {
@@ -191,7 +192,8 @@ public class CsvManager {
 	}
 	
 	/** 
-	  * Print in the terminal the Top nbLines of the sorted Map<Order, Integer> SortedSumProducts
+	  * Print in the terminal the Top nbLines of the sorted Map SortedSumProducts
+	  * @param nbLines is the number of top lines to print in the terminal
 	  *
 	*/
 	public void printSummary(int nbLines) {

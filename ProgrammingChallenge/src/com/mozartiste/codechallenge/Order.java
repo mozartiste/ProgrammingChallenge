@@ -36,8 +36,8 @@ public class Order {
 	}
 
 	/**
-	* Set Quantity
-	* @param int the quantity
+	* Set Quantity the number of product order
+	* @param quantity is the number of articles ordered
 	*/
 	public void setQuantity(int quantity) {
 		Quantity = quantity;
@@ -53,7 +53,7 @@ public class Order {
 
 	/**
 	* Set Price
-	* @param Double the quantity
+	* @param price is the unit price of the product
 	*/
 	public void setPrice(Double price) {
 		Price = price;
@@ -69,7 +69,7 @@ public class Order {
 	
 	/**
 	* Set Product Name
-	* @param String the Product Name
+	* @param product is the name of the Product
 	*/
 	public void setProduct(String product) {
 		Product = product;
@@ -85,15 +85,15 @@ public class Order {
 
 	/**
 	* Set Currency
-	* @param String the Currency
+	* @param currency of the order
 	*/
 	public void setCurrency(String currency) {
 		Currency = currency;
 	}
 
 	/**
-	* @Override the method equals
-	* @param Order to compare
+	* Overriding the method equals
+	* @param obj is the Order to compare
 	*/
 	@Override
 	public boolean equals(Object obj) {
@@ -109,7 +109,7 @@ public class Order {
 	}
 
 	/**
-	* @Override hashCode
+	* Override the hashCode method
 	*/
 	@Override
 	public int hashCode() {
