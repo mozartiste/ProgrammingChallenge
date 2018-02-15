@@ -197,7 +197,7 @@ public class CsvManager {
 	public void printSummary(int nbLines) {
 		System.out.println(header);
 		int i = 0;
-		//Iterator untill nbLines and print thhe nbLines first lines in the Terminal
+		//Iterate until nbLines and print the nbLines first lines in the Terminal
 		Iterator<Entry<Order, Integer>> entries = SortedSumProducts.entrySet().iterator();
 		while (entries.hasNext() && i < nbLines) {
 			i++;
