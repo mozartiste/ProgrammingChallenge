@@ -22,6 +22,48 @@ public class CsvManager {
 	Map<Order, Integer> SortedSumProducts;
 	int NbRecors;
 	
+	@Override
+	/**
+     * Compare 2 object CsvManager
+     * @param o object to be compared for equality with this map
+     * @return <tt>true</tt> if the specified object is equal to this map
+     */
+    public boolean equals(Object o) {
+			
+        if (o == this)
+            return true;
+
+        if (!(o instanceof CsvManager))
+            return false;
+        
+        Map<Order,Integer> m = ((CsvManager) o).getSortedSumProducts();
+        if (m.size() != SortedSumProducts.size())
+            return false;
+
+        try {
+            Iterator<Entry<Order,Integer>> i = SortedSumProducts.entrySet().iterator();
+            while (i.hasNext()) {
+                Entry<Order,Integer> e = i.next();
+                Order key = e.getKey();
+                Integer value = e.getValue();
+                if (value == null) {
+                    if (!(m.get(key)==null && m.containsKey(key)))
+                        return false;
+                } else {
+                    if (!value.equals(m.get(key)))
+                        return false;
+                }
+            }
+        } catch (ClassCastException unused) {
+            return false;
+        } catch (NullPointerException unused) {
+            return false;
+        }
+
+        return true;
+    }
+
+	
 	public int getNbRecors() {
 		return NbRecors;
 	}
