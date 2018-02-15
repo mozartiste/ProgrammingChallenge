@@ -1,27 +1,64 @@
 package com.mozartiste.codechallenge;
 
 public class Order {
-	int Quantity;
-	Double Price;
-	String Product;
-	String Currency;
-	String Key; // an Key identifiyer for the treeMap
-
+	private int Quantity;
+	private Double Price;
+	private String Product;
+	private String Currency;
+	
 	static String header = "Product\t\t\tTotal Quantity\t\tCurrency\t\tValue ";
 
-	static String GetKey(String product, String currency) {
-		return product + "_" + currency;
-	}
-
+	// constructor
 	public Order(int quantity, String product, String currency, Double price) {
 		super();
 		this.Quantity = quantity;
 		this.Product = product;
 		this.Currency = currency;
-		this.Key = GetKey(Product, Currency);
 		this.Price = price;
 		;
 	}
+	
+	public int getQuantity() {
+		return Quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		Quantity = quantity;
+	}
+
+	public Double getPrice() {
+		return Price;
+	}
+
+	public void setPrice(Double price) {
+		Price = price;
+	}
+
+	public String getProduct() {
+		return Product;
+	}
+
+	public void setProduct(String product) {
+		Product = product;
+	}
+
+	public String getCurrency() {
+		return Currency;
+	}
+
+	public void setCurrency(String currency) {
+		Currency = currency;
+	}
+
+	public static String getHeader() {
+		return header;
+	}
+
+	public static void setHeader(String header) {
+		Order.header = header;
+	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {

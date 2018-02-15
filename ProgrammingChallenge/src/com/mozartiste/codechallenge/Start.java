@@ -1,10 +1,11 @@
 package com.mozartiste.codechallenge;
 
-public class testCSVReader {
+public class Start {
 
 	public static void main(String[] args) {
 		CsvManager mng = new CsvManager(args, ",");
-		mng.summarizeAll(10);
+		mng.summarizeAll();
+		mng.printSummary(10);
 	}
 
 }
