@@ -16,11 +16,23 @@ import java.util.stream.Collectors;
 
 public class CsvManager {
 
+	
 	private String[] CSVs;
 	private String separator;
-	private List<Order> totalOrders;
+	Map<Order, Integer> SortedSumProducts;
+	int NbRecors;
+	
+	public int getNbRecors() {
+		return NbRecors;
+	}
+
 
 	// Getters and setters
+	public Map<Order, Integer> getSortedSumProducts() {
+		return SortedSumProducts;
+	}
+
+	
 	public String getSeparator() {
 		return separator;
 	}
@@ -29,19 +41,13 @@ public class CsvManager {
 		this.separator = separator;
 	}
 
-	public List<Order> getTotalOrders() {
-		return totalOrders;
-	}
 
-	public void setTotalOrders(List<Order> totalOrders) {
-		this.totalOrders = totalOrders;
-	}
 
 	public CsvManager(String[] cSVs, String separator) {
 		super();
 		CSVs = cSVs;
 		this.separator = separator;
-		totalOrders = new ArrayList<Order>();
+
 	}
 
 	public List<String[]> readCSV(String fileCSV, String separator) {
@@ -72,11 +78,11 @@ public class CsvManager {
 		}
 	}
 
-	public void summarizeAll(int nbLines) {
+	public void summarizeAll() {
 		List<String[]> totalFiles = new ArrayList<String[]>();
 
 		for (String csvfile : CSVs) {
-			List<String[]> orders = readCSV("data/" + csvfile, ",");
+			List<String[]> orders = readCSV("./data/" + csvfile, ",");
 			totalFiles.addAll(orders);
 		}
 
@@ -85,8 +91,17 @@ public class CsvManager {
 						p -> new Order(Integer.parseInt(p[1]), p[2], p[4], Double.parseDouble(p[3])),
 						Collectors.summingInt(p -> Integer.parseInt(p[1]))));
 
-		Map<Order, Integer> SortedSumProducts = sortByValue(SumProducts, true);
+		SortedSumProducts = sortByValue(SumProducts, true);
+		Iterator<Entry<Order, Integer>> entries = SortedSumProducts.entrySet().iterator();
+		this.NbRecors = 0;
+		while (entries.hasNext()) {
+				this.NbRecors++;
+				entries.next();
+		}
 
+	}
+	
+	public void printSummary(int nbLines) {
 		System.out.println(Order.header);
 		int i = 0;
 
@@ -94,11 +109,10 @@ public class CsvManager {
 		while (entries.hasNext() && i < nbLines) {
 			i++;
 			Map.Entry<Order, Integer> entry = entries.next();
-			System.out.println(entry.getKey().Product + "\t\t" + entry.getValue() + "\t\t\t" + entry.getKey().Currency
-					+ "\t\t" + (entry.getValue() * entry.getKey().Price));
+			System.out.println(entry.getKey().getProduct() + "\t\t" + entry.getValue() + "\t\t\t" + entry.getKey().getCurrency()
+					+ "\t\t" + (entry.getValue() * entry.getKey().getPrice()));
 
 		}
-
 	}
 
 }
