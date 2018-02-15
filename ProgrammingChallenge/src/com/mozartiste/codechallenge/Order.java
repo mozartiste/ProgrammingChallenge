@@ -1,12 +1,19 @@
 package com.mozartiste.codechallenge;
 
+/**
+* The class is the descriptor of an order
+* orders is described by Quantity, Price, Product, Currency
+* @version 0.0
+* @author Mehdi Korti
+*/
 public class Order {
+	// Attributs
 	private int Quantity;
 	private Double Price;
 	private String Product;
 	private String Currency;
 	
-	static String header = "Product\t\t\tTotal Quantity\t\tCurrency\t\tValue ";
+
 
 	// constructor
 	public Order(int quantity, String product, String currency, Double price) {
@@ -18,48 +25,76 @@ public class Order {
 		;
 	}
 	
+	// Setters and Getters
+	
+	/**
+	* Get Quantity
+	* @return int the quantity
+	*/
 	public int getQuantity() {
 		return Quantity;
 	}
 
+	/**
+	* Set Quantity
+	* @param int the quantity
+	*/
 	public void setQuantity(int quantity) {
 		Quantity = quantity;
 	}
 
+	/**
+	* Get Price
+	* @return Double the Price
+	*/
 	public Double getPrice() {
 		return Price;
 	}
 
+	/**
+	* Set Price
+	* @param Double the quantity
+	*/
 	public void setPrice(Double price) {
 		Price = price;
 	}
 
+	/**
+	* Get Product Name
+	* @return String the Product Name
+	*/
 	public String getProduct() {
 		return Product;
 	}
-
+	
+	/**
+	* Set Product Name
+	* @param String the Product Name
+	*/
 	public void setProduct(String product) {
 		Product = product;
 	}
 
+	/**
+	* Get Currency
+	* @return String the Currency
+	*/
 	public String getCurrency() {
 		return Currency;
 	}
 
+	/**
+	* Set Currency
+	* @param String the Currency
+	*/
 	public void setCurrency(String currency) {
 		Currency = currency;
 	}
 
-	public static String getHeader() {
-		return header;
-	}
-
-	public static void setHeader(String header) {
-		Order.header = header;
-	}
-
-
-
+	/**
+	* @Override the method equals
+	* @param Order to compare
+	*/
 	@Override
 	public boolean equals(Object obj) {
 
@@ -73,6 +108,9 @@ public class Order {
 		return mytuple.Currency.equals(Currency) && mytuple.Product.equals(Product);
 	}
 
+	/**
+	* @Override hashCode
+	*/
 	@Override
 	public int hashCode() {
 		int result = 17;
